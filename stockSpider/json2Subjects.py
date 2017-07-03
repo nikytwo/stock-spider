@@ -11,7 +11,7 @@ class Subject:
 if __name__ == '__main__':
 
     # json to Subject class object
-    with open('../finance-600172.json') as json_file:
+    with open('../finance/300115.json') as json_file:
         datas = json.load(json_file)
         finance = {}
         for k, v in datas.items():
@@ -31,6 +31,6 @@ if __name__ == '__main__':
                     subjects.append(subject)
 
             finance[k] = subjects
+            print subjects
 
         print datas
-        print subjects

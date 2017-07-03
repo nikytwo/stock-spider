@@ -9,9 +9,11 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-FEED_URI = 'file://D:/MySource/stockSpider/finance.json'
-FEED_FORMAT = 'jsonlines'
+FEED_URI = 'file://D:/MySource/stockSpider/%(name)s/%(stock_num)s.csv'
+FEED_FORMAT = 'csv'
 FEED_EXPORT_ENCODING = 'utf-8'
+FEED_EXPORT_FIELDS =  ['name','sold']
+# FEED_EXPORT_FIELDS =  ['name','size','price','sold']
 
 BOT_NAME = 'stockSpider'
 

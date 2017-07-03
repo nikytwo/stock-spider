@@ -8,9 +8,16 @@
 import scrapy
 
 
-class StockspiderItem(scrapy.Item):
+class HouseItem(scrapy.Item):
+    name = scrapy.Field()
+    size = scrapy.Field()
+    price = scrapy.Field()
+    sold = scrapy.Field()
+
+class FinanceItem(scrapy.Item):
     # define the fields for your item here like:
     name = scrapy.Field()
+    num = scrapy.Field()
     benefit = scrapy.Field()
     debt = scrapy.Field()
     cash = scrapy.Field()
@@ -20,3 +27,31 @@ class StockspiderItem(scrapy.Item):
     grow = scrapy.Field()
     pay = scrapy.Field()
     pass
+
+
+class BaseInfoItem(scrapy.Item):
+    name = scrapy.Field()
+    num = scrapy.Field()
+
+if __name__ == '__main__':
+    stock_count = 0.9472
+    # pe = 18.0
+    price = 35.41
+    rad_year = 0.25
+    in_per_last = 0.77
+    in_per = (in_per_last*(1+rad_year)) # price / pe
+    years = 10
+    total_price = stock_count * price
+
+    print total_price
+    print "pe0=", price/in_per_last
+    print "pe1=", price/(0.35*(in_per_last/0.14))
+    print "pe2=", price/(in_per_last*(1+rad_year))
+
+    for i in range(years):
+        if i > 0:
+            in_per = in_per * (1 + rad_year)
+        price = price + in_per
+        print i, price, in_per, price / in_per
+
+    # print price

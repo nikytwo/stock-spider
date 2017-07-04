@@ -40,6 +40,17 @@ class CapitalItem(BaseInfoItem):
     count = scrapy.Field()
 
 
+class HistoryPriceItem(BaseInfoItem):
+    date = scrapy.Field()
+    start_price = scrapy.Field()
+    max_price = scrapy.Field()
+    min_price = scrapy.Field()
+    end_price = scrapy.Field()
+    total_count = scrapy.Field()
+    total_price = scrapy.Field()
+    change_rate = scrapy.Field()
+
+
 if __name__ == '__main__':
     stock_count = 0.9472
     # pe = 18.0

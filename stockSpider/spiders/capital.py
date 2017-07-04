@@ -20,17 +20,15 @@ class CapitalSpider(BaseSpider):
 
     def parse(self, response):
         name = response.xpath('//*[@id="in_squote"]/div/h1/a[1]/strong/text()').extract_first()
-        dateList = response.xpath('//*[@id="stockcapit"]/div[2]/table/thead/tr/th')
-        capList = response.xpath('//*[@id="stockcapit"]/div[2]/table/tbody/tr[1]/td')
-        print dateList
-        for i in range(len(capList)):
-            print i
-            print capList[i]
-            print dateList[i + 1]
+        date_list = response.xpath('//*[@id="stockcapit"]/div[2]/table/thead/tr/th')
+        cap_list = response.xpath('//*[@id="stockcapit"]/div[2]/table/tbody/tr[1]/td')
+        print date_list
+        for i in range(len(cap_list)):
+            print cap_list[i]
+            print date_list[i + 1]
             capital = CapitalItem()
             capital['name'] = name
             capital['num'] = response.meta['num']
-            capital['date'] = dateList[i + 1].xpath('text()').extract_first()
-            capital['count'] = capList[i].xpath('text()').extract_first()
-            print capital
+            capital['date'] = date_list[i + 1].xpath('text()').extract_first()
+            capital['count'] = cap_list[i].xpath('text()').extract_first()
             yield capital

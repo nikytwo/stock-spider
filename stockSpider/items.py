@@ -8,11 +8,17 @@
 import scrapy
 
 
+class BaseInfoItem(scrapy.Item):
+    name = scrapy.Field()
+    num = scrapy.Field()
+
+
 class HouseItem(scrapy.Item):
     name = scrapy.Field()
     size = scrapy.Field()
     price = scrapy.Field()
     sold = scrapy.Field()
+
 
 class FinanceItem(scrapy.Item):
     # define the fields for your item here like:
@@ -29,9 +35,10 @@ class FinanceItem(scrapy.Item):
     pass
 
 
-class BaseInfoItem(scrapy.Item):
-    name = scrapy.Field()
-    num = scrapy.Field()
+class CapitalItem(BaseInfoItem):
+    date = scrapy.Field()
+    count = scrapy.Field()
+
 
 if __name__ == '__main__':
     stock_count = 0.9472

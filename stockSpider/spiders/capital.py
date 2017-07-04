@@ -1,8 +1,11 @@
 
 import scrapy
+from scrapy.spiders import BaseSpider
+
+from stockSpider.items import CapitalItem
 
 
-class CapitalSpider(scrapy.Spider):
+class CapitalSpider(BaseSpider):
     name = 'capital'
     allowed_domains = []
     start_urls = []
@@ -13,7 +16,21 @@ class CapitalSpider(scrapy.Spider):
 
     def start_requests(self):
         url = 'http://stockpage.10jqka.com.cn/%s/holder/' % self.stock_num
-        yield scrapy.Request(url, callback=self.parse)
+        yield scrapy.Request(url, meta={'num': self.stock_num}, callback=self.parse)
 
     def parse(self, response):
-        pass
+        name = response.xpath('//*[@id="in_squote"]/div/h1/a[1]/strong/text()').extract_first()
+        dateList = response.xpath('//*[@id="stockcapit"]/div[2]/table/thead/tr/th')
+        capList = response.xpath('//*[@id="stockcapit"]/div[2]/table/tbody/tr[1]/td')
+        print dateList
+        for i in range(len(capList)):
+            print i
+            print capList[i]
+            print dateList[i + 1]
+            capital = CapitalItem()
+            capital['name'] = name
+            capital['num'] = response.meta['num']
+            capital['date'] = dateList[i + 1].xpath('text()').extract_first()
+            capital['count'] = capList[i].xpath('text()').extract_first()
+            print capital
+            yield capital

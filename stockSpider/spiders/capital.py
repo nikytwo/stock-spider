@@ -7,6 +7,7 @@ from stockSpider.items import CapitalItem
 
 class CapitalSpider(BaseSpider):
     name = 'capital'
+    keys = ['num', 'date']
     allowed_domains = []
     start_urls = []
 

@@ -7,6 +7,7 @@ from stockSpider.spiders.base import BaseSpider
 
 class ListSpider(BaseSpider):
     name = 'stock_list'
+    keys = ['num']
     stock_num = 'all'
     allowed_domains = []
     start_urls = []

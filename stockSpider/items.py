@@ -8,11 +8,6 @@
 import scrapy
 
 
-class BaseInfoItem(scrapy.Item):
-    name = scrapy.Field()
-    num = scrapy.Field()
-
-
 class HouseItem(scrapy.Item):
     name = scrapy.Field()
     size = scrapy.Field()
@@ -20,10 +15,14 @@ class HouseItem(scrapy.Item):
     sold = scrapy.Field()
 
 
-class FinanceItem(scrapy.Item):
-    # define the fields for your item here like:
+class BaseInfoItem(scrapy.Item):
     name = scrapy.Field()
     num = scrapy.Field()
+    vocation = scrapy.Field()
+
+
+class FinanceItem(BaseInfoItem):
+    # define the fields for your item here like:
     benefit = scrapy.Field()
     debt = scrapy.Field()
     cash = scrapy.Field()

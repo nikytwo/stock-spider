@@ -11,6 +11,7 @@ from stockSpider.items import HistoryPriceItem
 
 class HistoryPriceSpider(scrapy.Spider):
     name = 'history'
+    keys = ['num', 'date']
     allowed_domains = []
     start_urls = []
 

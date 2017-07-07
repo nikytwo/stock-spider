@@ -8,6 +8,7 @@ from stockSpider.items import FinanceItem
 
 class FinanceSpider(scrapy.Spider):
     name = "finance"
+    keys = []
     stock_num = '123456'
     item_class_name = name
     allowed_domains = []

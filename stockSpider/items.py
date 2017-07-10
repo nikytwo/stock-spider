@@ -18,7 +18,13 @@ class HouseItem(scrapy.Item):
 class BaseInfoItem(scrapy.Item):
     name = scrapy.Field()
     num = scrapy.Field()
+
+
+class CompanyItem(BaseInfoItem):
+    company_name = scrapy.Field()
     vocation = scrapy.Field()
+    province = scrapy.Field()
+    start_date = scrapy.Field()
 
 
 class FinanceItem(BaseInfoItem):

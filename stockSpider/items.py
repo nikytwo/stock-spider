@@ -24,6 +24,7 @@ class CompanyItem(BaseInfoItem):
     company_name = scrapy.Field()
     vocation = scrapy.Field()
     province = scrapy.Field()
+    web_home = scrapy.Field()
     start_date = scrapy.Field()
 
 
@@ -32,11 +33,11 @@ class FinanceItem(BaseInfoItem):
     benefit = scrapy.Field()
     debt = scrapy.Field()
     cash = scrapy.Field()
-    main = scrapy.Field()
-    each = scrapy.Field()
-    operate = scrapy.Field()
-    grow = scrapy.Field()
-    pay = scrapy.Field()
+    # main = scrapy.Field()
+    # each = scrapy.Field()
+    # operate = scrapy.Field()
+    # grow = scrapy.Field()
+    # pay = scrapy.Field()
     pass
 
 

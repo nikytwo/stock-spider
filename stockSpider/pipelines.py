@@ -10,7 +10,17 @@ import os
 from scrapy.exceptions import DropItem
 
 
-class StockspiderPipeline(object):
+class CoverPipeline(object):
+    def process_item(self, item, spider):
+        return item
+
+    def open_spider(self, spider):
+        file_path = '%s/%s.json' % (spider.name, spider.stock_num)
+        if os.path.exists(file_path):
+            os.remove(file_path)
+
+
+class UnDuplicatedPipeline(object):
     item_ids = set()
 
     def process_item(self, item, spider):

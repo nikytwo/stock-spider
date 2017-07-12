@@ -4,16 +4,17 @@ import json
 import scrapy
 
 from stockSpider.items import FinanceItem
+from stockSpider.spiders.base import BaseSpider
 
 
-class FinanceSpider(scrapy.Spider):
+class FinanceSpider(BaseSpider):
     name = "finance"
-    stock_num = '123456'
+    stock_num = '000001'
     item_class_name = name
     allowed_domains = []
     start_urls = []
 
-    def __init__(self, stock_num=None, item_class="finance", **kwargs):
+    def __init__(self, stock_num='603199', item_class="finance", **kwargs):
         super(FinanceSpider, self).__init__(**kwargs)
         self.stock_num = stock_num
         self.item_class_name = item_class
@@ -32,11 +33,11 @@ class FinanceSpider(scrapy.Spider):
         self.parse_subject(finance, response, 'benefit')
         self.parse_subject(finance, response, 'debt')
         self.parse_subject(finance, response, 'cash')
-        self.parse_subject(finance, response, 'main')
-        self.parse_subject(finance, response, 'each')
-        self.parse_subject(finance, response, 'operate')
-        self.parse_subject(finance, response, 'grow')
-        self.parse_subject(finance, response, 'pay')
+        # self.parse_subject(finance, response, 'main')
+        # self.parse_subject(finance, response, 'each')
+        # self.parse_subject(finance, response, 'operate')
+        # self.parse_subject(finance, response, 'grow')
+        # self.parse_subject(finance, response, 'pay')
 
         yield finance
 

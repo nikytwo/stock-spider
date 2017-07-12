@@ -71,7 +71,7 @@ DOWNLOAD_DELAY = 3
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'stockSpider.pipelines.StockspiderPipeline': 300,
+   'stockSpider.pipelines.CoverPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

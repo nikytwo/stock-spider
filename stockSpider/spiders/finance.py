@@ -20,6 +20,7 @@ class FinanceSpider(BaseSpider):
         self.item_class_name = item_class
 
     def start_requests(self):
+        # 'http://data.10jqka.com.cn/financial/yjyg/' 业绩
         url = 'http://stockpage.10jqka.com.cn/%s/finance/' % self.stock_num
         yield scrapy.Request(url, meta={'num': self.stock_num}, callback=self.parse)
 

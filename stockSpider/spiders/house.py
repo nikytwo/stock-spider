@@ -8,14 +8,14 @@ from stockSpider.items import HouseItem
 
 class HouseSpider(scrapy.Spider):
     name = "house"
-    stock_num = 'tingtao2-4n13-15-sold'
+    stock_num = 'longhu-sold'
     item_class_name = name
     allowed_domains = []
     start_urls = []
 
     def start_requests(self):
         # url = 'http://house.shunde.gov.cn/dy_list.jsp?id=2017010603&type=-1'
-        url = 'http://house.shunde.gov.cn/dy_list.jsp?id=2017010003&type=-1'
+        url = 'http://house.shunde.gov.cn/dy_list.jsp?id=2017009203&type=-1'
         # name = 'test'
         # url = 'http://house.shunde.gov.cn/dy_detailinfo.jsp?id=201701000783'
         yield scrapy.Request(url, callback=self.parse)
@@ -35,11 +35,11 @@ class HouseSpider(scrapy.Spider):
             url = 'http://house.shunde.gov.cn/%s' % link
             print name, url, sold, sale_status
 
-            house = HouseItem()
-            house['name'] = name
-            house['sold'] = sold
-            yield house
-            # yield scrapy.Request(url=url, meta={'name': name, 'sold': sold}, callback=self.parse_link)
+            # house = HouseItem()
+            # house['name'] = name
+            # house['sold'] = sold
+            # yield house
+            yield scrapy.Request(url=url, meta={'name': name, 'sold': sold}, callback=self.parse_link)
 
 
     def parse_link(self, response):

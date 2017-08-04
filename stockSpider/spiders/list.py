@@ -27,9 +27,10 @@ class ListSpider(BaseSpider):
             info["num"] = tr.xpath('td[2]/a/text()').extract_first()
             info["name"] = tr.xpath('td[3]/a/text()').extract_first()
             yield info
-        next_page = response.xpath('//*[@id="m-page"]/a[last()]')
-        next_page_name = next_page.xpath('text()').extract_first()
-        if next_page_name == '150':
+        page_info = response.xpath('//*[@class="page_info"]/text()').extract_first()
+        [cur, last] = page_info.split('/')
+        print page_info, cur, last
+        if cur == last:
             print 'none'
         else:
             page = response.meta['page']

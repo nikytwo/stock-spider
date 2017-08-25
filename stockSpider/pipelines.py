@@ -10,6 +10,12 @@ import os
 from scrapy.exceptions import DropItem
 
 
+class MultItemPipeline(object):
+    def process_item(self, item, spider):
+        spider.stock_num = item['num']
+        return item
+
+
 class CoverPipeline(object):
     def process_item(self, item, spider):
         return item

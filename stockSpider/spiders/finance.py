@@ -20,6 +20,7 @@ class FinanceSpider(BaseSpider):
         self.item_class_name = item_class
 
     def start_requests(self):
+        # http://f10.eastmoney.com/f10_v2/FinanceAnalysis.aspx?code=sz002502&timetip=636376909795584820#dbfx-0
         # 'http://data.10jqka.com.cn/financial/yjyg/' 业绩
         url = 'http://stockpage.10jqka.com.cn/%s/finance/' % self.stock_num
         yield scrapy.Request(url, meta={'num': self.stock_num}, callback=self.parse)

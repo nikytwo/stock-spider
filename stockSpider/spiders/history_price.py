@@ -15,14 +15,19 @@ class HistoryPriceSpider(scrapy.Spider):
     allowed_domains = []
     start_urls = []
 
-    def __init__(self, stock_num='002741', year=2017, **kwargs):
+    def __init__(self, num_list=None, **kwargs):
         super(HistoryPriceSpider, self).__init__(**kwargs)
-        self.stock_num = stock_num
-        self.year = year
+        self.stock_num = '111111'
+        self.year_list = [2017,2016,2015]
+        if num_list is None:
+            num_list = []
+        self.num_list = num_list
 
     def start_requests(self):
-        url = 'http://d.10jqka.com.cn/v2/line/hs_%s/01/%s.js' % (self.stock_num, self.year)
-        yield scrapy.Request(url, meta={'num': self.stock_num}, callback=self.parse)
+        for number in self.num_list:
+            for year in self.year_list:
+                url = 'http://d.10jqka.com.cn/v2/line/hs_%s/01/%s.js' % (number, year)
+                yield scrapy.Request(url, meta={'num': number}, callback=self.parse)
 
     def parse(self, response):
         num = response.meta['num']
